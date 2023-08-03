@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:login_account_screen/password_save_screen.dart';
@@ -16,7 +15,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
 
 
   @override
@@ -99,34 +97,34 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget future(BuildContext context) {
     return ElevatedButton(
-              onPressed: () async {
-                String name = nameController.text;
-                String password = passwordController.text;
-                SharedPreferences pref = await SharedPreferences.getInstance();
-                String? name1 = pref.getString("name");
-                String? password1 = pref.getString("password");
-                if (name == name1 && password == password1) {
-                 Navigator.push(context, MaterialPageRoute(builder: (context){
-                   return  PasswordSaveScreen();
-                 }));
-                } else {
-                  Fluttertoast.showToast(
-                    msg: "Please Sing up Account",
-                    gravity: ToastGravity.CENTER,
-                  );
-                }
-              },
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Login',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                ],
-              ),
-            );
+      onPressed: () async {
+        String name = nameController.text;
+        String password = passwordController.text;
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        String? name1 = pref.getString("name");
+        String? password1 = pref.getString("password");
+        if (name == name1 && password == password1) {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return PasswordSaveScreen();
+          }));
+        } else {
+          Fluttertoast.showToast(
+            msg: "Please Sing up Account",
+            gravity: ToastGravity.CENTER,
+          );
+        }
+      },
+      child: const Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Login',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

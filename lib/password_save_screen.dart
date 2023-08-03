@@ -152,12 +152,12 @@ class _PasswordSaveScreenState extends State<PasswordSaveScreen> {
         passwordController.clear();
         if (name != password) {
           Fluttertoast.showToast(
-            msg: "Please Enter password",
+            msg: "Save your password",
             gravity: ToastGravity.CENTER,
           );
         } else {
           Fluttertoast.showToast(
-            msg: "Enter pas",
+            msg: " Please Enter password",
             gravity: ToastGravity.CENTER,
           );
         }
