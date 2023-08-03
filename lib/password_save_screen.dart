@@ -12,7 +12,7 @@ class PasswordSaveScreen extends StatefulWidget {
 
 class _PasswordSaveScreenState extends State<PasswordSaveScreen> {
   TextEditingController passwordController = TextEditingController();
-  TextEditingController nameController=TextEditingController();
+  TextEditingController nameController = TextEditingController();
 
   String name = 'Facebook';
   List<String> list = [
@@ -32,144 +32,150 @@ class _PasswordSaveScreenState extends State<PasswordSaveScreen> {
     'File Manager',
   ];
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Wel Come',style: TextStyle(fontSize: 24,),
+        title: const Text(
+          'Wel Come',
+          style: TextStyle(
+            fontSize: 24,
+          ),
         ),
         backgroundColor: Colors.amber,
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
+          child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(children: [
           Center(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  const Text('Select Your Website',style: TextStyle(fontSize: 16),),
-                  const Icon(Icons.arrow_forward_ios_rounded,size: 16,),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  DropdownButton<String>(
-                    padding: const EdgeInsets.only(
-                      left: 14,
-                    ),
-                    value: name,
-                    onChanged: (String? item) {
-                      passwordController.clear();
-                      name = item!;
-                      setState(() {});
-                    },
-                    items: list.map(
-                          (e) {
-                        return DropdownMenuItem(
-                          value: e,
-                          child: Text(e),
-                        );
-                      },
-                    ).toList(),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              TextField(
-                obscureText: true,
-                controller: passwordController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  hintText: 'Enter Password',
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 20,
                 ),
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              setSharedPreferences(),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const PasswordGetScreen();
-                  }));
-                },
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Row(
                   children: [
-                    Text(
-                      'Check Your Save Password',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
+                    const Text(
+                      'Select Your Website',
+                      style: TextStyle(fontSize: 16),
                     ),
-                    SizedBox(
-                      width: 12,
-                    ),
-                    Icon(
+                    const Icon(
                       Icons.arrow_forward_ios_rounded,
-                      size: 24,
+                      size: 16,
+                    ),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    DropdownButton<String>(
+                      padding: const EdgeInsets.only(
+                        left: 14,
+                      ),
+                      value: name,
+                      onChanged: (String? item) {
+                        passwordController.clear();
+                        name = item!;
+                        setState(() {});
+                      },
+                      items: list.map(
+                        (e) {
+                          return DropdownMenuItem(
+                            value: e,
+                            child: Text(e),
+                          );
+                        },
+                      ).toList(),
                     ),
                   ],
                 ),
-              ),
-            ],
+                const SizedBox(
+                  height: 24,
+                ),
+                TextField(
+                  obscureText: true,
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    hintText: 'Enter Password',
+                  ),
+                ),
+                const SizedBox(
+                  height: 32,
+                ),
+                setSharedPreferences(),
+                const SizedBox(
+                  height: 16,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const PasswordGetScreen();
+                    }));
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Check Your Save Password',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 24,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ]
-          ),
-    )
-    ),
+        ]),
+      )),
     );
   }
 
   Widget setSharedPreferences() {
     return ElevatedButton(
-              onPressed: () async {
-                String password = passwordController.text;
-                SharedPreferences pref =
-                await SharedPreferences.getInstance();
-                pref.setString(name,password);
-                passwordController.clear();
-                if(name!=password) {
-                  Fluttertoast.showToast(
-                    msg: "Please Enter password",
-                    gravity: ToastGravity.CENTER,
-                  );
-                }
-                else{
-                  Fluttertoast.showToast(
-                    msg: "Enter pas",
-                    gravity: ToastGravity.CENTER,
-                  );
-                }
-              },
-              child:  const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Save',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                ],
-              ),
-            );
+      onPressed: () async {
+        String password = passwordController.text;
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        pref.setString(name, password);
+        passwordController.clear();
+        if (name != password) {
+          Fluttertoast.showToast(
+            msg: "Please Enter password",
+            gravity: ToastGravity.CENTER,
+          );
+        } else {
+          Fluttertoast.showToast(
+            msg: "Enter pas",
+            gravity: ToastGravity.CENTER,
+          );
+        }
+      },
+      child: const Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Save',
+            style: TextStyle(
+              fontSize: 20,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
-
 
 //
 // Drawer(
