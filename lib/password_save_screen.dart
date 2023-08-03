@@ -1,5 +1,5 @@
+import 'package:Password_Manager/password_get-screen.dart';
 import 'package:flutter/material.dart';
-import 'package:login_account_screen/password_get-screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
