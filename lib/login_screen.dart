@@ -1,6 +1,7 @@
 
 import 'package:Password_Manager/password_save_screen.dart';
 import 'package:Password_Manager/singup_screen.dart';
+import 'package:Password_Manager/string_const.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,13 +17,12 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Login Page',
+         StringConst.loginTitleText,
           style: TextStyle(
             fontSize: 24,
           ),
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  hintText: 'Enter name',
+                  labelText: 'Enter name',
                 ),
               ),
             ),
@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  hintText: 'Enter Password',
+                  labelText: 'Enter Password',
                 ),
               ),
             ),
@@ -70,22 +70,20 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const SignupScreen();
-                  }));
-                },
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Sing up',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return const SignupScreen();
+                    }));
+                  },
+                  child: const Text(
+                    'Sing up',
+                    style: TextStyle(
+                      fontSize: 18,
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
